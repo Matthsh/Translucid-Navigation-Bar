@@ -16,13 +16,19 @@ body {
 }
 
 .sidebar {
-    width: 360px;
+    width: 120px;
     height: 100vh;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     background: rgba(10, 10, 10, .65);
     box-shadow: 0 8px 32px rgb(0, 0, 0);
     border-right: 2px solid rgba(255, 255, 255, .09);
+    transition: .4s ease-in-out;
+}
+
+.sidebar.open {
+    width: 360px;
+
 }
 
 .sidebar .logo {
@@ -35,7 +41,11 @@ body {
 }
 
 .sidebar .logo img {
-    /*width: 56px;*/
+    width: 56px;
+    transition: .4s ease-in-out;
+}
+
+.sidebar.open .logo img {
     width: 96px;
 }
 
@@ -49,10 +59,24 @@ body {
     opacity: 0;
 }
 
+.sidebar.open .logo h3 {
+    scale: 1;
+    opacity: 1;
+    transition: .4s;
+    transition-delay: .2s;
+}
+
 .sidebar .nav-tittle {
     color: #dadada;
     margin: 40px 0 18px;
     pointer-events: none;
+    opacity: 0;
+}
+
+.sidebar.open .nav-tittle {
+    opacity: 1;
+    transition: .4s;
+    transition-delay: .2s;
 }
 
 .sidebar nav {
@@ -70,10 +94,15 @@ body {
     padding: 0 16px;
     margin: 8px 0;
     color: #fff;
+    transition: .3s;
 }
 
 .sidebar nav .nav-item.active{
-    
+    background: #ff328e !important;
+}
+
+.sidebar nav .nav-item:hover {
+    background: rgba(255, 255, 255, .1)
 }
 
 .sidebar nav .nav-item i {
@@ -83,5 +112,58 @@ body {
 .sidebar nav .nav-item span {
     font-size: 18px;
     margin-left: 8px;
+    opacity: 0;
     pointer-events: none;
+}
+
+.sidebar.open nav .nav-item span {
+    opacity: 1;
+    pointer-events: visible;
+    transition: .4s;
+    transition-delay: .2s;
+}
+
+.sidebar hr {
+    width: 100%;
+    height: 2px;
+    border-radius: 3px;
+    margin: 40px 0 50px;
+    background: rgba(255, 255, 255, .1);
+    opacity: 0;
+}
+
+.sidebar.open hr {
+    opacity: 1;
+    transition: .4s;
+}
+
+.sidebar .toggle {
+    cursor: pointer;
+    position: absolute;
+    color: #fff;
+    top: 180px;
+    right: -20px;
+    font-size: 38px;
+    line-height: 50%;
+    text-align: center;
+    border-radius: 50%;
+    padding: 2px 0 2px 2px;
+    background: linear-gradient(
+        90deg,
+        transparent 50%,
+        rgba(10, 10, 10, .65) 50%
+    );
+    transition: .4s ease-in-out;
+}
+
+.sidebar.open .toggle {
+    transform: translateY(45px);
+}
+
+.sidebar .toggle i{
+    transition: .4s linear;
+}
+
+.sidebar.open .toggle i{
+    transform: rotateY(180deg);
 }
